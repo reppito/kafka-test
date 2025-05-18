@@ -36,22 +36,19 @@ services:
     networks:
       - kafka-net
 
-  app:
-    build: .
-    container_name: kafka-app
-    ports:
-      - "3000:3000"
-    environment:
-      - KAFKA_BROKERS=kafka:9092
-      - API_PORT=3000
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
     depends_on:
       - kafka
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: "-Xms32M -Xmx64M"
+      SERVER_SERVLET_CONTEXTPATH: "/"
     networks:
       - kafka-net
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/dist
 
 volumes:
   zookeeper-data:

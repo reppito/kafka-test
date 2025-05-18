@@ -1,0 +1,92 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Web Service",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/web/index.ts",
+      "runtimeArgs": [
+        "--loader",
+        "ts-node/esm",
+        "--experimental-specifier-resolution=node"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "KAFKA_CLIENT_ID": "kafka-experiment",
+        "KAFKA_BROKERS": "localhost:29092",
+        "KAFKA_TOPIC": "messages-topic",
+        "KAFKA_GROUP_ID": "kafka-experiment-group",
+        "API_PORT": "3000",
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Consumer",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/consumer/index.ts",
+      "runtimeArgs": [
+        "--loader",
+        "ts-node/esm",
+        "--experimental-specifier-resolution=node"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "KAFKA_CLIENT_ID": "kafka-experiment-consumer",
+        "KAFKA_BROKERS": "localhost:29092",
+        "KAFKA_TOPIC": "messages-topic",
+        "KAFKA_GROUP_ID": "kafka-experiment-group",
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Producer",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/producer/index.ts",
+      "runtimeArgs": [
+        "--loader",
+        "ts-node/esm",
+        "--experimental-specifier-resolution=node"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "KAFKA_CLIENT_ID": "kafka-experiment-producer",
+        "KAFKA_BROKERS": "localhost:29092",
+        "KAFKA_TOPIC": "messages-topic",
+        "KAFKA_GROUP_ID": "kafka-experiment-group",
+        "NODE_ENV": "development"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Consumer & Producer",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev:all"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "KAFKA_CLIENT_ID": "kafka-experiment",
+        "KAFKA_BROKERS": "localhost:29092",
+        "KAFKA_TOPIC": "messages-topic",
+        "KAFKA_GROUP_ID": "kafka-experiment-group",
+        "NODE_ENV": "development"
+      }
+    }
+  ]
+} 

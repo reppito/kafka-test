@@ -29,9 +29,6 @@ const processMessage = async (message: Message): Promise<void> => {
       console.log('Payload:', message.payload);
     }
     
-    // Here you would implement your actual message processing logic
-    // e.g., store in database, call other services, etc.
-    
     console.log('Message processed successfully');
     console.log('------------------------');
   } catch (error) {
